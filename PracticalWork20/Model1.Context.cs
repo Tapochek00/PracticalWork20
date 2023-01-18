@@ -29,8 +29,12 @@ namespace PracticalWork20
         public virtual DbSet<OrderList> OrderList { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Services> Services { get; set; }
+        public virtual DbSet<View_2> View_2 { get; set; }
+        public virtual DbSet<View_1> View_1 { get; set; }
+        public virtual DbSet<View_3> View_3 { get; set; }
 
         private static ClientsOrderSomeStuffEntities context;
+
         public static ClientsOrderSomeStuffEntities GetContext()
         {
             if (context == null) context = new ClientsOrderSomeStuffEntities();

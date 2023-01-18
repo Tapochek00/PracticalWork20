@@ -12,16 +12,11 @@ namespace PracticalWork20
     using System;
     using System.Collections.Generic;
     
-    public partial class Orders
+    public partial class View_3
     {
-        public int OrderId { get; set; }
-        public System.DateTime OrderDate { get; set; }
-        public int ServiceId { get; set; }
-        public double ServiceCost { get; set; }
-        public string PaymentMethod { get; set; }
-    
-        public virtual OrderList OrderList { get; set; }
-        public virtual Services Services { get; set; }
-        public virtual OrderList OrderList1 { get; set; }
+        public int ClientId { get; set; }
+        public string ClientSurname { get; set; }
+        public string ClientAddress { get; set; }
+        public string ClientPhone { get; set; }
     }
 }

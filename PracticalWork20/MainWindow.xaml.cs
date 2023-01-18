@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -29,73 +30,69 @@ namespace PracticalWork20
         ClientsOrderSomeStuffEntities db = ClientsOrderSomeStuffEntities.GetContext();
         private void mainWin_Loaded(object sender, RoutedEventArgs e)
         {
-            db.OrderList.Load();
-            var shit = from p in db.OrderList
-                       join pain in db.Orders on p.OrderId equals pain.OrderId
-                       join pain2 in db.Services on pain.ServiceId equals pain2.ServiceId
-                       join pain3 in db.Clients on p.ClientId equals pain3.ClientId
-                       select new 
-                       { 
-                           Id = p.OrderId,
-                           Surname = pain3.ClientSurname,
-                           Phone = pain3.ClientPhone,
-                           SName = pain2.ServiceName,
-                           Cost = p.OrderCost,
-                           Date = pain.OrderDate
-                       };
-            DataGrid1.ItemsSource = shit.ToList();
+            db.View_1.Load();
+            DataGrid1.ItemsSource = db.View_1.Local.ToBindingList();
         }
 
-        private void Edit_Click(object sender, RoutedEventArgs e)
+        private void ManageServices_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Add_Click(object sender, RoutedEventArgs e)
-        {
-            AddRecord add = new AddRecord();
+            AddService add = new AddService();
             add.Owner = this;
             add.ShowDialog();
         }
 
-        private void View_Click(object sender, RoutedEventArgs e)
+        private void ManageClients_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Delete_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Filter_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Update_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void FindAndDelete_Click(object sender, RoutedEventArgs e)
-        {
-
+            AddClient add = new AddClient();
+            add.Owner = this;
+            add.ShowDialog();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
-        private void About_Click(object sender, RoutedEventArgs e)
+        private void OrdersCost_Click(object sender, RoutedEventArgs e)
         {
-
+            CostSumForEachClient win = new CostSumForEachClient();
+            win.Owner = this;
+            win.ShowDialog();
         }
 
-        private void Reset_Click(object sender, RoutedEventArgs e)
+        private void CityClients_Click(object sender, RoutedEventArgs e)
         {
+            ClientsInfo win = new ClientsInfo();
+            win.Owner = this;
+            win.ShowDialog();
+        }
 
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            Search search = new Search();
+            search.Owner = this;
+            search.ShowDialog();
+
+            for (int i = 0; i < DataGrid1.Items.Count; i++)
+            {
+                var row = (View_1)DataGrid1.Items[i];
+                string find = row.ClientSurname;
+                try
+                {
+                    if (find != null && find.Contains(Data.searchText))
+                    {
+                        object item = DataGrid1.Items[i];
+                        DataGrid1.SelectedItem = item;
+                        DataGrid1.ScrollIntoView(item);
+                        DataGrid1.Focus();
+                        break;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

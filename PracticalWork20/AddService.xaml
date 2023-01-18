@@ -1,0 +1,35 @@
+﻿<Window x:Class="PracticalWork20.AddService"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PracticalWork20"
+        mc:Ignorable="d"
+        Title="Услуги" Height="350" Width="550"
+        WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.55*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <TextBlock Margin="20, 5" HorizontalAlignment="Left">Название услуги</TextBlock>
+            <TextBox x:Name="ServName" Margin="20, 5" HorizontalAlignment="Left"
+                     Width="150" MaxLength="20"/>
+
+            <TextBlock Margin="20, 5" HorizontalAlignment="Left">Стоимость</TextBlock>
+            <TextBox x:Name="Cost" Margin="20, 5" HorizontalAlignment="Left" Width="150" MaxLength="50"/>
+
+            <Button x:Name="Add" Padding="8, 5" Margin="20, 20, 0, 10" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsDefault="True" Content="Добавить" Click="Add_Click"></Button>
+            <Button x:Name="Delete" Padding="8, 5" Margin="20, 5, 0, 10" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsDefault="True" Content="Удалить" Click="Delete_Click"></Button>
+            <Button x:Name="Cancel" Padding="8, 5" Margin="20, 5" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsCancel="True" Content="Отмена" Click="Cancel_Click"></Button>
+        </StackPanel>
+        <DataGrid x:Name="dataGrid_Clients" IsReadOnly="True" AutoGenerateColumns="False" Grid.Column="1">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="1.2*" Header="№" Binding="{Binding ServiceId}"/>
+                    <DataGridTextColumn Width="5*" Header="Услуга" Binding="{Binding ServiceName}"/>
+                    <DataGridTextColumn Width="5*" Header="Стоимость" Binding="{Binding ServiceCost, StringFormat=f2}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+    </Grid>
+</Window>

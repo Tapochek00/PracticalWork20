@@ -4,47 +4,89 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="Хранилище ClientsOrderSomeStuffModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+    <Schema Namespace="Хранилище ClientsOrderSomeStuffModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="ClientId" />
           </Key>
-          <Property Name="ClientId" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="ClientSurname" Nullable="false" MaxLength="20" Type="nvarchar" />
-          <Property Name="ClientAddress" MaxLength="50" Type="nvarchar" />
-          <Property Name="ClientPhone" Nullable="false" MaxLength="11" Type="nvarchar" />
+          <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientSurname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ClientAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClientPhone" Type="nvarchar" MaxLength="11" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderList">
           <Key>
             <PropertyRef Name="OrderId" />
           </Key>
-          <Property Name="OrderId" Nullable="false" Type="int" />
-          <Property Name="ClientId" Nullable="false" Type="int" />
-          <Property Name="OrderCost" Nullable="false" Type="float" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="OrderCost" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="OrderId" />
           </Key>
-          <Property Name="OrderId" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="OrderDate" Nullable="false" Type="date" />
-          <Property Name="ServiceId" Nullable="false" Type="int" />
-          <Property Name="ServiceCost" Nullable="false" Type="float" />
-          <Property Name="PaymentMethod" Nullable="false" MaxLength="50" Type="nvarchar" />
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+          <Property Name="ServiceId" Type="int" Nullable="false" />
+          <Property Name="ServiceCost" Type="float" Nullable="false" />
+          <Property Name="PaymentMethod" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Services">
           <Key>
             <PropertyRef Name="ServiceId" />
           </Key>
-          <Property Name="ServiceId" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="ServiceName" Nullable="false" MaxLength="50" Type="nvarchar" />
-          <Property Name="ServiceCost" Nullable="false" Type="float" />
+          <Property Name="ServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ServiceCost" Type="float" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "ClientsOrderSomeStuff.dbo.View_1" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <Association Name="FK_OrderList_Clients">
-          <End Type="Self.Clients" Multiplicity="1" Role="Clients" />
-          <End Type="Self.OrderList" Multiplicity="*" Role="OrderList" />
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="ClientSurname" />
+            <PropertyRef Name="ClientPhone" />
+            <PropertyRef Name="ServiceName" />
+            <PropertyRef Name="OrderCost" />
+            <PropertyRef Name="OrderDate" />
+          </Key>
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ClientSurname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ClientPhone" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="ServiceName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrderCost" Type="float" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "ClientsOrderSomeStuff.dbo.View_2" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_2">
+          <Key>
+            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="ClientSurname" />
+          </Key>
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="ClientSurname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Cost" Type="float" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "ClientsOrderSomeStuff.dbo.View_3" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_3">
+          <Key>
+            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="ClientSurname" />
+            <PropertyRef Name="ClientPhone" />
+          </Key>
+          <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientSurname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ClientAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClientPhone" Type="nvarchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_OrderList_Clients1">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderList" Type="Self.OrderList" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
               <PropertyRef Name="ClientId" />
@@ -54,21 +96,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Orders_OrderList">
-          <End Type="Self.OrderList" Multiplicity="1" Role="OrderList" />
-          <End Type="Self.Orders" Multiplicity="0..1" Role="Orders" />
+        <Association Name="FK_OrderList_Orders1">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderList" Type="Self.OrderList" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="OrderList">
+            <Principal Role="Orders">
               <PropertyRef Name="OrderId" />
             </Principal>
-            <Dependent Role="Orders">
+            <Dependent Role="OrderList">
               <PropertyRef Name="OrderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Services">
-          <End Type="Self.Services" Multiplicity="1" Role="Services" />
-          <End Type="Self.Orders" Multiplicity="*" Role="Orders" />
+          <End Role="Services" Type="Self.Services" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Services">
               <PropertyRef Name="ServiceId" />
@@ -83,21 +129,45 @@
           <EntitySet Name="OrderList" EntityType="Self.OrderList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_OrderList_Clients" Association="Self.FK_OrderList_Clients">
-            <End EntitySet="Clients" Role="Clients" />
-            <End EntitySet="OrderList" Role="OrderList" />
+          <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_1].[OrderId] AS [OrderId], 
+    [View_1].[ClientSurname] AS [ClientSurname], 
+    [View_1].[ClientPhone] AS [ClientPhone], 
+    [View_1].[ServiceName] AS [ServiceName], 
+    [View_1].[OrderCost] AS [OrderCost], 
+    [View_1].[OrderDate] AS [OrderDate]
+    FROM [dbo].[View_1] AS [View_1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_2" EntityType="Self.View_2" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_2].[ClientId] AS [ClientId], 
+    [View_2].[ClientSurname] AS [ClientSurname], 
+    [View_2].[Cost] AS [Cost]
+    FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_3" EntityType="Self.View_3" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_3].[ClientId] AS [ClientId], 
+    [View_3].[ClientSurname] AS [ClientSurname], 
+    [View_3].[ClientAddress] AS [ClientAddress], 
+    [View_3].[ClientPhone] AS [ClientPhone]
+    FROM [dbo].[View_3] AS [View_3]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_OrderList_Clients1" Association="Self.FK_OrderList_Clients1">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="OrderList" EntitySet="OrderList" />
           </AssociationSet>
-          <AssociationSet Name="FK_Orders_OrderList" Association="Self.FK_Orders_OrderList">
-            <End EntitySet="OrderList" Role="OrderList" />
-            <End EntitySet="Orders" Role="Orders" />
+          <AssociationSet Name="FK_OrderList_Orders1" Association="Self.FK_OrderList_Orders1">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderList" EntitySet="OrderList" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Services" Association="Self.FK_Orders_Services">
-            <End EntitySet="Services" Role="Services" />
-            <End EntitySet="Orders" Role="Orders" />
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClientsOrderSomeStuffModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -120,6 +190,7 @@
           <Property Name="OrderCost" Type="Double" Nullable="false" />
           <NavigationProperty Name="Clients" Relationship="Self.FK_OrderList_Clients" FromRole="OrderList" ToRole="Clients" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_OrderList" FromRole="OrderList" ToRole="Orders" />
+          <NavigationProperty Name="Orders1" Relationship="ClientsOrderSomeStuffModel.FK_OrderList_Orders" FromRole="OrderList" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -132,6 +203,7 @@
           <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="OrderList" Relationship="Self.FK_Orders_OrderList" FromRole="Orders" ToRole="OrderList" />
           <NavigationProperty Name="Services" Relationship="Self.FK_Orders_Services" FromRole="Orders" ToRole="Services" />
+          <NavigationProperty Name="OrderList1" Relationship="ClientsOrderSomeStuffModel.FK_OrderList_Orders" FromRole="Orders" ToRole="OrderList" />
         </EntityType>
         <EntityType Name="Services">
           <Key>
@@ -143,7 +215,9 @@
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Services" FromRole="Services" ToRole="Orders" />
         </EntityType>
         <Association Name="FK_OrderList_Clients">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="OrderList" Type="Self.OrderList" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
@@ -195,7 +269,64 @@
             <End Role="Services" EntitySet="Services" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
+          <AssociationSet Name="FK_OrderList_Orders" Association="ClientsOrderSomeStuffModel.FK_OrderList_Orders">
+            <End EntitySet="Orders" Role="Orders" />
+            <End EntitySet="OrderList" Role="OrderList" />
+          </AssociationSet>
+          <EntitySet Name="View_2" EntityType="ClientsOrderSomeStuffModel.View_2" />
+          <EntitySet Name="View_1" EntityType="ClientsOrderSomeStuffModel.View_1" />
+          <EntitySet Name="View_3" EntityType="ClientsOrderSomeStuffModel.View_3" />
         </EntityContainer>
+        <Association Name="FK_OrderList_Orders">
+          <End Type="ClientsOrderSomeStuffModel.Orders" Multiplicity="1" Role="Orders">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ClientsOrderSomeStuffModel.OrderList" Multiplicity="0..1" Role="OrderList" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderList">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="View_2">
+          <Key>
+            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="ClientSurname" />
+          </Key>
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="ClientSurname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Double" />
+        </EntityType>
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="ClientSurname" />
+            <PropertyRef Name="ClientPhone" />
+            <PropertyRef Name="ServiceName" />
+            <PropertyRef Name="OrderCost" />
+            <PropertyRef Name="OrderDate" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="ClientSurname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ClientPhone" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderCost" Type="Double" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="View_3">
+          <Key>
+            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="ClientSurname" />
+            <PropertyRef Name="ClientPhone" />
+          </Key>
+          <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientSurname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ClientAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientPhone" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -238,6 +369,37 @@
                 <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
                 <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
                 <ScalarProperty Name="ServiceCost" ColumnName="ServiceCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_2">
+            <EntityTypeMapping TypeName="ClientsOrderSomeStuffModel.View_2">
+              <MappingFragment StoreEntitySet="View_2">
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="ClientSurname" ColumnName="ClientSurname" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_1">
+            <EntityTypeMapping TypeName="ClientsOrderSomeStuffModel.View_1">
+              <MappingFragment StoreEntitySet="View_1">
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderCost" ColumnName="OrderCost" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+                <ScalarProperty Name="ClientSurname" ColumnName="ClientSurname" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_3">
+            <EntityTypeMapping TypeName="ClientsOrderSomeStuffModel.View_3">
+              <MappingFragment StoreEntitySet="View_3">
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+                <ScalarProperty Name="ClientAddress" ColumnName="ClientAddress" />
+                <ScalarProperty Name="ClientSurname" ColumnName="ClientSurname" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

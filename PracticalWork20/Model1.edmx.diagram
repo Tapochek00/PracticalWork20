@@ -12,6 +12,10 @@
         <AssociationConnector Association="ClientsOrderSomeStuffModel.FK_OrderList_Clients" ManuallyRouted="false" />
         <AssociationConnector Association="ClientsOrderSomeStuffModel.FK_Orders_OrderList" ManuallyRouted="false" />
         <AssociationConnector Association="ClientsOrderSomeStuffModel.FK_Orders_Services" ManuallyRouted="false" />
+        <AssociationConnector Association="ClientsOrderSomeStuffModel.FK_OrderList_Orders" />
+        <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.View_2" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.View_1" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.View_3" Width="1.5" PointX="7.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

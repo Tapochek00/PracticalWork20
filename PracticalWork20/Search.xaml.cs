@@ -15,23 +15,27 @@ using System.Windows.Shapes;
 namespace PracticalWork20
 {
     /// <summary>
-    /// Логика взаимодействия для AddRecord.xaml
+    /// Логика взаимодействия для Search.xaml
     /// </summary>
-    public partial class AddRecord : Window
+    public partial class Search : Window
     {
-        public AddRecord()
+        public Search()
         {
             InitializeComponent();
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void Search_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-
+            if (searchText.Text.Length != 0)
+            {
+                Data.searchText = searchText.Text;
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Введите запрос");
+                searchText.Focus();
+            }
         }
     }
 }
