@@ -48,11 +48,11 @@ namespace PracticalWork20
                     return;
                 }
 
-                // Поиск клиента по фамилии
+                // Поиск клиента
                 string[] findText = combo.Text.Split(' ');
                 Clients client = db.Clients.Find(int.Parse(findText[0]));
 
-                // Поиск услуги по названию
+                // Поиск услуги
                 string[] findService = comboService.Text.Split(' ');
                 Services service = db.Services.Find(int.Parse(findService[0]));
 
