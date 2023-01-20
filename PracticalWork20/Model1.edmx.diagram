@@ -8,14 +8,16 @@
         <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.Clients" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.OrderList" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.Orders" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.Services" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="ClientsOrderSomeStuffModel.FK_OrderList_Clients" ManuallyRouted="false" />
         <AssociationConnector Association="ClientsOrderSomeStuffModel.FK_Orders_OrderList" ManuallyRouted="false" />
-        <AssociationConnector Association="ClientsOrderSomeStuffModel.FK_Orders_Services" ManuallyRouted="false" />
-        <AssociationConnector Association="ClientsOrderSomeStuffModel.FK_OrderList_Orders" />
         <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.View_2" Width="1.5" PointX="5.375" PointY="4.75" />
         <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.View_1" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.View_3" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.Services" Width="1.5" PointX="0.75" PointY="4.875" />
+        <AssociationConnector Association="ClientsOrderSomeStuffModel.FK_Orders_Services" />
+        <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.View_4" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.View_6" Width="1.5" PointX="3.375" PointY="7.75" />
+        <EntityTypeShape EntityType="ClientsOrderSomeStuffModel.View_7" Width="1.5" PointX="5.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

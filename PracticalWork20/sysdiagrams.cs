@@ -12,15 +12,12 @@ namespace PracticalWork20
     using System;
     using System.Collections.Generic;
     
-    public partial class Orders
+    public partial class sysdiagrams
     {
-        public int OrderId { get; set; }
-        public System.DateTime OrderDate { get; set; }
-        public int ServiceId { get; set; }
-        public double ServiceCost { get; set; }
-        public string PaymentMethod { get; set; }
-    
-        public virtual OrderList OrderList { get; set; }
-        public virtual Services Services { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

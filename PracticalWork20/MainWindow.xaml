@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PracticalWork20"
         mc:Ignorable="d"
-        Title="Практическая работа №20-21" Height="300" Width="1000"
+        Title="Практическая работа №20-21" Height="300" Width="1200"
         WindowStartupLocation="CenterScreen" Loaded="mainWin_Loaded">
     <Grid>
         <Grid.RowDefinitions>
@@ -38,15 +38,21 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Width="6*" Header="Услуга" Binding="{Binding ServiceName, StringFormat=f2}"/>
                 <DataGridTextColumn Width="6*" Header="Стоимость" Binding="{Binding OrderCost, StringFormat=f2}"/>
-                <DataGridTextColumn Width="10*" Header="Дата заказа" Binding="{Binding OrderDate, StringFormat=d}"/>
+                <DataGridTextColumn Width="10*" Header="Дата заказа" Binding="{Binding OrderDate, StringFormat=dd.MM.yy}"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1">
-            <Button x:Name="ManageClients" Content="Клиенты" Margin="15" Padding="7" Click="ManageClients_Click"/>
-            <Button x:Name="ManageServices" Content="Услуги" Margin="15" Padding="7" Click="ManageServices_Click"/>
-            <Button x:Name="OrdersCost" Content="Сумма заказов" Margin="15" Padding="7" Click="OrdersCost_Click"/>
-            <Button x:Name="CityClients" Content="Клиенты с кодом города Рязань" Margin="15" Padding="7" Click="CityClients_Click"/>
-            <Button x:Name="Search" Content="Поиск" Margin="15" Padding="7" Click="Search_Click"/>
+            <Button x:Name="ManageClients" Content="Клиенты" Margin="5" Padding="5" Click="ManageClients_Click"/>
+            <Button x:Name="ManageServices" Content="Услуги" Margin="5" Padding="5" Click="ManageServices_Click"/>
+            <Button x:Name="PaymentMethodNumber" Content="Первый квартал" Margin="5" Padding="5" Click="PaymentMethodNumber_Click"/>
+            <Button x:Name="WinterCost" Content="Зимние месяцы" Margin="5" Padding="5" Click="WinterCost_Click"/>
+            <Button x:Name="IncreaseCost" Content="Увеличить стоимость" Margin="5" Padding="5" Click="IncreaseCost_Click"/>
+            <Button x:Name="Quantity" Content="Количество заказов" Margin="5" Padding="5" Click="Quantity_Click"/>
+            <Button x:Name="LessThanAvg" Content="Стоимость ниже средней" Margin="5" Padding="5" Click="LessThanAvg_Click"/>
+            <Button x:Name="OrdersCost" Content="Сумма заказов" Margin="5" Padding="5" Click="OrdersCost_Click"/>
+            <Button x:Name="CityClients" Content="Код города" Margin="5" Padding="5" Click="CityClients_Click"/>
+            <Button x:Name="Search" Content="Поиск" Margin="5" Padding="5" Click="Search_Click"/>
+            <Button x:Name="AddRecord" Content="Добавить" Margin="5" Padding="5" Click="AddRecord_Click"/>
         </StackPanel>
     </Grid>
 </Window>

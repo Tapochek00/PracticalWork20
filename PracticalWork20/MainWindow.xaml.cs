@@ -94,5 +94,63 @@ namespace PracticalWork20
                 }
             }
         }
+
+        private void AddRecord_Click(object sender, RoutedEventArgs e)
+        {
+            AddRecordMainForm add = new AddRecordMainForm();
+            add.Owner = this;
+            add.ShowDialog();
+
+            OrderList order = new OrderList();
+
+            int id = (from p in db.Orders select p.OrderId).ToList().Last();
+
+            order.OrderId = id;
+            order.ClientId = Data.clientId;
+            order.OrderCost = Data.orderCost;
+
+            /*try
+            {*/
+                db.OrderList.Add(order);
+                //db.SaveChanges();
+            /*}
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }*/
+        }
+
+        private void PaymentMethodNumber_Click(object sender, RoutedEventArgs e)
+        {
+            PaymentMethodNumber pay = new PaymentMethodNumber();
+            pay.Owner = this;
+            pay.ShowDialog();
+        }
+
+        private void WinterCost_Click(object sender, RoutedEventArgs e)
+        {
+            WinterCost win = new WinterCost();
+            win.Owner = this;
+            win.ShowDialog();
+        }
+
+        private void IncreaseCost_Click(object sender, RoutedEventArgs e)
+        {
+            db.Database.ExecuteSqlCommand("UPDATE Services SET ServiceCost = ServiceCost + ServiceCost/100*0.15");
+        }
+
+        private void Quantity_Click(object sender, RoutedEventArgs e)
+        {
+            QuantityOfOrders a = new QuantityOfOrders();
+            a.Owner = this;
+            a.ShowDialog();
+        }
+
+        private void LessThanAvg_Click(object sender, RoutedEventArgs e)
+        {
+            LessThanAvg less = new LessThanAvg();
+            less.Owner = this;
+            less.ShowDialog();
+        }
     }
 }

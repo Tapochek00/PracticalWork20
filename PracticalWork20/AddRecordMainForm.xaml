@@ -1,0 +1,31 @@
+﻿<Window x:Class="PracticalWork20.AddRecordMainForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PracticalWork20"
+        mc:Ignorable="d"
+        Title="Добавить запись" Height="430" Width="300"
+        WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
+    <Grid>
+        <StackPanel x:Name="stPanel" HorizontalAlignment="Left" Margin="20, 0, 0, 0">
+            <TextBlock Margin="0, 5" HorizontalAlignment="Left">Выберите фамилию клиента или введите её</TextBlock>
+            <ComboBox x:Name="combo" HorizontalAlignment="Left" Margin="20, 5" Width="150"></ComboBox>
+
+            <TextBlock HorizontalAlignment="Left" Margin="0, 5">Выберите услугу или введите её название</TextBlock>
+            <ComboBox x:Name="comboService" HorizontalAlignment="Left" Margin="20, 5" Width="150"></ComboBox>
+
+            <TextBlock HorizontalAlignment="Left" Margin="0, 5">Выберите форму оплаты</TextBlock>
+            <ComboBox x:Name="paymentMethod" HorizontalAlignment="Left" Margin="20, 5" Width="150">
+                <ComboBoxItem Content="Наличными"/>
+                <ComboBoxItem Content="По безналичному расчёту"/>
+            </ComboBox>
+            
+            <TextBlock HorizontalAlignment="Left" Margin="0, 5">Выберите дату заказа</TextBlock>
+            <DatePicker x:Name="orderDate" HorizontalAlignment="Left" Margin="20, 5"></DatePicker>
+
+            <Button x:Name="Add" Padding="8, 5" Margin="20, 20, 0, 10" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsDefault="True" Content="Добавить" Click="Add_Click"></Button>
+            <Button x:Name="Cancel" Padding="8, 5" Margin="20, 5" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsCancel="True" Content="Отмена" Click="Cancel_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

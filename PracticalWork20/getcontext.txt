@@ -1,0 +1,6 @@
+private static ClientsOrderSomeStuffEntities context;
+        public static ClientsOrderSomeStuffEntities GetContext()
+        {
+            if (context == null) context = new ClientsOrderSomeStuffEntities();
+            return context;
+        }

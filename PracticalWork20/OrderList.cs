@@ -20,6 +20,5 @@ namespace PracticalWork20
     
         public virtual Clients Clients { get; set; }
         public virtual Orders Orders { get; set; }
-        public virtual Orders Orders1 { get; set; }
     }
 }
