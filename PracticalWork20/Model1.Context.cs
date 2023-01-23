@@ -25,14 +25,14 @@ namespace PracticalWork20
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Clients> Clients { get; set; }
         public virtual DbSet<OrderList> OrderList { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<View_2> View_2 { get; set; }
-        public virtual DbSet<View_1> View_1 { get; set; }
-        public virtual DbSet<View_3> View_3 { get; set; }
         public virtual DbSet<Services> Services { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<View_1> View_1 { get; set; }
+        public virtual DbSet<View_2> View_2 { get; set; }
+        public virtual DbSet<View_3> View_3 { get; set; }
         public virtual DbSet<View_4> View_4 { get; set; }
         public virtual DbSet<View_6> View_6 { get; set; }
         public virtual DbSet<View_7> View_7 { get; set; }

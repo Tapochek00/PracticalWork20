@@ -10,12 +10,10 @@ namespace PracticalWork20
     {
         public static string searchText;
 
-        public static int orderId;
         public static int clientId;
-        public static string clientSurname;
-        public static string clientPhone;
-        public static string serviceName;
+
         public static double orderCost;
-        public static DateTime orderDate;
+
+        public static int recordId;
     }
 }

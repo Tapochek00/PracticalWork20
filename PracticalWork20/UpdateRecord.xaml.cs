@@ -20,9 +20,9 @@ namespace PracticalWork20
     /// <summary>
     /// Логика взаимодействия для AddRecordMainForm.xaml
     /// </summary>
-    public partial class AddRecordMainForm : Window
+    public partial class UpdateRecord : Window
     {
-        public AddRecordMainForm()
+        public UpdateRecord()
         {
             InitializeComponent();
         }
@@ -33,37 +33,19 @@ namespace PracticalWork20
             {
                 Orders order = new Orders();
 
-                StringBuilder errors = new StringBuilder();
-                if (combo.Text.Length == 0)
-                    errors.AppendLine("Выберите фамилию");
-                if (comboService.Text.Length == 0)
-                    errors.AppendLine("Выберите услугу");
-                if (paymentMethod.Text.Length == 0) errors.AppendLine("Выберите форму оплаты");
-                if (orderDate.Text.Length == 0) errors.AppendLine("Выберите дату");
-
-                if (errors.Length > 0)
-                {
-                    MessageBox.Show(errors.ToString());
-                    return;
-                }
-
-                // Поиск клиента
-                string[] findText = combo.Text.Split(' ');
-                Clients client = db.Clients.Find(int.Parse(findText[0]));
-
-                // Поиск услуги
-                string[] findService = comboService.Text.Split(' ');
-                Services service = db.Services.Find(int.Parse(findService[0]));
+                order = db.Orders.Find(Data.recordId);
+                orderList = db.OrderList.Find(Data.recordId);
+                client = db.Clients.Find(orderList.ClientId);
+                serv = db.Services.Find(order.ServiceId);
 
                 order.OrderDate = (DateTime)orderDate.SelectedDate;
-                order.ServiceId = service.ServiceId;
-                order.ServiceCost = service.ServiceCost;
+                order.ServiceId = serv.ServiceId;
+                order.ServiceCost = serv.ServiceCost;
                 order.PaymentMethod = paymentMethod.Text;
 
                 Data.clientId = client.ClientId;
-                Data.orderCost = service.ServiceCost;
+                Data.orderCost = serv.ServiceCost;
 
-                db.Orders.Add(order);
                 db.SaveChanges();
                 Close();
             }
@@ -79,24 +61,31 @@ namespace PracticalWork20
         }
 
         ClientsOrderSomeStuffEntities db = ClientsOrderSomeStuffEntities.GetContext();
+        Orders order;
+        OrderList orderList;
+        Clients client;
+        Services serv;
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {            
+        {
             ComboBoxItem comboItem;
+            order = db.Orders.Find(Data.recordId);
+            serv = db.Services.Find(order.ServiceId);
+            orderList = db.OrderList.Find(Data.recordId);
+            client = db.Clients.Find(orderList.ClientId);
 
-            foreach(var client in db.Clients)
-            {
-                comboItem = new ComboBoxItem();
-                comboItem.Content = client.ClientId + " " + client.ClientSurname;
-                combo.Items.Add(comboItem);
-            }
+            combo.Text = client.ClientSurname;
 
             foreach (var service in db.Services)
             {
                 comboItem = new ComboBoxItem();
                 comboItem.Content = service.ServiceId + " " + service.ServiceName;
                 comboService.Items.Add(comboItem);
+                if (service.ServiceId == serv.ServiceId) comboItem.IsSelected = true;
             }
 
+            if (order.PaymentMethod == "наличными") cash.IsSelected = true;
+            else cashnt.IsSelected = true;
+            orderDate.SelectedDate = order.OrderDate;
         }
     }
 }

@@ -11,7 +11,7 @@
         <DataGrid x:Name="dataGrid_Clients" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="5*" Header="Месяц" Binding="{Binding Month}"/>
-                <DataGridTextColumn Width="5*" Header="Стоимость" Binding="{Binding Cost}"/>
+                <DataGridTextColumn Width="5*" Header="Стоимость" Binding="{Binding Cost, StringFormat=f2}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

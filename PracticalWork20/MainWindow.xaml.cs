@@ -109,16 +109,18 @@ namespace PracticalWork20
             order.ClientId = Data.clientId;
             order.OrderCost = Data.orderCost;
 
-            /*try
-            {*/
+            try
+            {
                 db.OrderList.Add(order);
-                //db.SaveChanges();
-            /*}
+                db.SaveChanges();
+                db.View_1.Load();
+                DataGrid1.ItemsSource = db.View_1.Local.ToBindingList();
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }*/
-        }
+            }
+}
 
         private void PaymentMethodNumber_Click(object sender, RoutedEventArgs e)
         {
@@ -151,6 +153,44 @@ namespace PracticalWork20
             LessThanAvg less = new LessThanAvg();
             less.Owner = this;
             less.ShowDialog();
+        }
+
+        private void UpdateRecord_Click(object sender, RoutedEventArgs e)
+        {
+            int indexRow = DataGrid1.SelectedIndex;
+            if (indexRow != -1)
+            {
+                View_1 row = (View_1)DataGrid1.Items[indexRow];
+                Data.recordId = row.OrderId;
+                UpdateRecord win = new UpdateRecord();
+                win.Owner = this;
+                win.ShowDialog();
+
+                OrderList order = db.OrderList.Find(row.OrderId);
+
+                order.OrderCost = Data.orderCost;
+                db.SaveChanges();
+                db.View_1.Load();
+                DataGrid1.ItemsSource = db.View_1.Local.ToBindingList();
+            }
+        }
+
+        private void DeleteRecord_Click(object sender, RoutedEventArgs e)
+        {
+            int indexRow = DataGrid1.SelectedIndex;
+            if (indexRow != -1)
+            {
+                View_1 row = (View_1)DataGrid1.Items[indexRow];
+
+                OrderList orderList = db.OrderList.Find(row.OrderId);
+                Orders order = db.Orders.Find(row.OrderId);
+                db.OrderList.Remove(orderList);
+                db.Orders.Remove(order);
+                
+                db.SaveChanges();
+                db.View_1.Load();
+                DataGrid1.ItemsSource = db.View_1.Local.ToBindingList();
+            }
         }
     }
 }
