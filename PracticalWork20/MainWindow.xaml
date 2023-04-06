@@ -16,9 +16,17 @@
             <MenuItem Header="Таблица">
                 <MenuItem Header="Клиенты" Click="ManageClients_Click"/>
                 <MenuItem Header="Услуги" Click="ManageServices_Click"/>
+                <MenuItem Header="Первый квартал" Click="PaymentMethodNumber_Click"/>
+                <MenuItem Header="Зимние месяцы" Click="WinterCost_Click"/>
+                <MenuItem Header="Увеличить стоимость" Click="IncreaseCost_Click"/>
+                <MenuItem Header="Количество заказов" Click="Quantity_Click"/>
+                <MenuItem Header="Стоимость ниже средней" Click="LessThanAvg_Click"/>
                 <MenuItem Header="Сумма заказов" Click="OrdersCost_Click"/>
                 <MenuItem Header="Клиенты с кодом города Рязань" Click="CityClients_Click"/>
                 <MenuItem Header="Поиск" Click="Search_Click"/>
+                <MenuItem Header="Добавить" Click="AddRecord_Click"/>
+                <MenuItem Header="Изменить" Click="UpdateRecord_Click"/>
+                <MenuItem Header="Удалить" Click="DeleteRecord_Click"/>
             </MenuItem>
             <MenuItem Header="Выход" Click="Exit_Click"></MenuItem>
         </Menu>
